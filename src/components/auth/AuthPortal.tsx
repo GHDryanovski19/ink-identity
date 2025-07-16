@@ -9,6 +9,7 @@ export const AuthPortal: React.FC = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [isValidating, setIsValidating] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
     // Start both blur and form animation simultaneously after a shorter delay
@@ -44,6 +45,9 @@ export const AuthPortal: React.FC = () => {
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
+    
+    // Set typing state for blur effect
+    setIsTyping(newEmail.length > 0);
     
     // Clear error when user starts typing
     if (emailError) {
@@ -96,7 +100,7 @@ export const AuthPortal: React.FC = () => {
       </div>
       
       <div className={`${styles.content} ${isFormVisible ? styles.visible : ''}`}>
-        <div className={styles.header}>
+        <div className={`${styles.header} ${isTyping ? styles.blurred : ''}`}>
           <h1 className={styles.title}>
             Login to <span className={styles.titleBrand}>InkID</span>
           </h1>
@@ -135,7 +139,9 @@ export const AuthPortal: React.FC = () => {
             )}
           </div>
 
-          <SocialLoginButtons onGoogleSignIn={handleGoogleSignIn} />
+          <div className={`${styles.socialLoginContainer} ${isTyping ? styles.blurred : ''}`}>
+            <SocialLoginButtons onGoogleSignIn={handleGoogleSignIn} />
+          </div>
         </div>
       </div>
 
