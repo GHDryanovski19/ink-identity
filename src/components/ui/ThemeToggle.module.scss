@@ -1,0 +1,107 @@
+.container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--color-bg-glass);
+  border: 1px solid var(--color-border-glass);
+  border-radius: var(--radius-2xl);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  backdrop-filter: var(--glass-blur);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--color-lime) 0%, var(--color-deep-green) 100%);
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+  }
+
+  &:hover {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-border-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+
+    &::before {
+      opacity: 0.1;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 2px;
+  }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--transition-smooth);
+  color: var(--color-text-primary);
+}
+
+.sunIcon {
+  color: #F59E0B;
+}
+
+.moonIcon {
+  color: #6366F1;
+}
+
+.button:hover .icon {
+  transform: rotate(15deg);
+}
+
+// Dark mode adjustments
+[data-theme="dark"] {
+  .button {
+    background: var(--glass-background);
+    border-color: var(--color-border-glass);
+
+    &:hover {
+      background: var(--color-bg-secondary);
+      border-color: var(--color-border-secondary);
+
+      &::before {
+        opacity: 0.15;
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 640px) {
+  .button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+} 

@@ -1,0 +1,205 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+
+  &.fullWidth {
+    width: 100%;
+  }
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--color-bg-glass);
+  border: 1px solid var(--color-border-glass);
+  border-radius: var(--radius-2xl);
+  transition: all var(--transition-smooth);
+  overflow: hidden;
+  backdrop-filter: var(--glass-blur);
+
+  &:hover {
+    border-color: var(--color-border-secondary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  &.focused {
+    border-color: var(--color-lime);
+    box-shadow: 0 0 0 3px rgba(152, 201, 60, 0.1), var(--shadow-sm);
+    background: var(--color-bg-primary);
+  }
+
+  &.error {
+    border-color: var(--color-error);
+    
+    &.focused {
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1), var(--shadow-sm);
+    }
+  }
+
+  &.success {
+    border-color: var(--color-success);
+    
+    &.focused {
+      box-shadow: 0 0 0 3px rgba(42, 146, 69, 0.1), var(--shadow-sm);
+    }
+  }
+
+  // Size variants
+  &.sm {
+    height: 36px;
+    padding: 0 var(--space-3);
+    font-size: var(--font-size-sm);
+  }
+
+  &.md {
+    height: 44px;
+    padding: 0 var(--space-4);
+    font-size: var(--font-size-base);
+  }
+
+  &.lg {
+    height: 52px;
+    padding: 0 var(--space-5);
+    font-size: var(--font-size-lg);
+  }
+}
+
+.input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-text-primary);
+  font-size: inherit;
+  line-height: 1;
+  font-family: inherit;
+
+  &::placeholder {
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.leftIcon,
+.rightIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  margin: 0 var(--space-3);
+}
+
+.statusIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: var(--space-3);
+  color: var(--color-error);
+
+  .success & {
+    color: var(--color-success);
+  }
+}
+
+.passwordToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: var(--space-2);
+  margin-right: var(--space-3);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+
+  &:hover {
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 2px;
+  }
+}
+
+.message {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  overflow: hidden;
+  padding: 0 var(--space-1);
+}
+
+.errorText {
+  color: var(--color-error);
+}
+
+.successText {
+  color: var(--color-success);
+}
+
+.helperText {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+// Dark mode adjustments
+[data-theme="dark"] {
+  .inputWrapper {
+    background: var(--glass-background);
+    border-color: var(--color-border-glass);
+
+    &:hover {
+      border-color: var(--color-border-secondary);
+    }
+
+    &.focused {
+      border-color: var(--color-lime);
+      box-shadow: 0 0 0 3px rgba(152, 201, 60, 0.2), var(--shadow-sm);
+      background: var(--color-bg-primary);
+    }
+
+    &.error {
+      border-color: var(--color-error);
+      
+      &.focused {
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2), var(--shadow-sm);
+      }
+    }
+
+    &.success {
+      border-color: var(--color-success);
+      
+      &.focused {
+        box-shadow: 0 0 0 3px rgba(42, 146, 69, 0.2), var(--shadow-sm);
+      }
+    }
+  }
+
+  .passwordToggle {
+    &:hover {
+      background: var(--color-bg-secondary);
+    }
+  }
+} 
